@@ -1,0 +1,197 @@
+meta {
+    title: "Hudhud";
+    version: "5.0";
+    description: "Hudhud signs. Icons load from GitHub by name: AI/sign_type=<value>.png Right-click > Style settings.";
+    author: "Hudhud Team";
+    icon: "https://raw.githubusercontent.com/amahmoud-266/hudhud-icons/main/Basic/Hudhud_Map.png";
+}
+
+/* ============================================================
+   ORIGINAL RULES (unchanged, kept exactly as in the source file)
+   ============================================================ */
+
+/* 1. Speed Bumps */
+node|z16-[traffic_calming=bump] {
+    icon-image: "https://raw.githubusercontent.com/amahmoud-266/hudhud-icons/main/Basic/Speed_bump.png";
+    icon-width: 30;
+    icon-height: 30;
+    icon-opacity: 1.0;
+
+    text: "bump";
+    text-color: white;
+    text-halo-color: black;
+    text-halo-radius: 2;
+    text-offset-y: 25;
+    font-size: 13;
+}
+
+/* 2. Rumble Strips */
+node|z16-[traffic_calming=rumble_strip] {
+    icon-image: "https://raw.githubusercontent.com/amahmoud-266/hudhud-icons/main/Basic/traffic_calming=rumble_strip.png";
+    icon-width: 30;
+    icon-height: 30;
+    icon-opacity: 1.0;
+
+    text: "Rumble Strip";
+    text-color: white;
+    text-halo-color: black;
+    text-halo-radius: 2;
+    text-offset-y: 22;
+    font-size: 13;
+}
+
+/* 3. Pedestrian Crossings */
+node|z16-[highway=crossing] {
+    icon-image: "https://raw.githubusercontent.com/amahmoud-266/hudhud-icons/main/Basic/pedestrian_crossing.png";
+    icon-width: 35;
+    icon-height: 35;
+    icon-opacity: 1.0;
+
+    text: "Pedestrian Crossing";
+    text-color: yellow;
+    text-halo-color: black;
+    text-halo-radius: 2;
+    text-offset-y: 25;
+    font-size: 13;
+}
+
+/* 4. Enforcement Camera (Phone & Seatbelt) */
+node|z16-[type=enforcement][enforcement="mobile_phone;seatbelt"] {
+    icon-image: "https://raw.githubusercontent.com/amahmoud-266/hudhud-icons/main/Basic/No%20cell%20%26%20seatbelt.png";
+    icon-width: 35;
+    icon-height: 35;
+    icon-opacity: 1.0;
+
+    text: "Camera: Phone/Seatbelt";
+    text-color: #ff0000;
+    text-halo-color: white;
+    text-halo-radius: 2;
+    text-offset-y: 25;
+    font-size: 12;
+}
+
+/* 5. Speed Camera */
+node|z16-[highway=speed_camera] {
+    icon-image: "https://raw.githubusercontent.com/amahmoud-266/hudhud-icons/main/Basic/Speed_Camera.png";
+    icon-width: 35;
+    icon-height: 35;
+    icon-opacity: 1.0;
+
+    text: "Speed Camera";
+    text-color: #ff0000;
+    text-halo-color: white;
+    text-halo-radius: 2;
+    text-offset-y: 25;
+    font-size: 12;
+}
+
+/* 6. Disabled Parking Space */
+node|z16-[amenity=parking_space][parking_space=disabled] {
+    icon-image: "https://raw.githubusercontent.com/amahmoud-266/hudhud-icons/main/Basic/disabled_parking.png";
+    icon-width: 35;
+    icon-height: 35;
+    icon-opacity: 1.0;
+
+    text: "Disabled Parking";
+    text-color: #00aaff;
+    text-halo-color: white;
+    text-halo-radius: 2;
+    text-offset-y: 25;
+    font-size: 12;
+}
+
+/* 7. Barrier Block */
+node|z16-[barrier=block] {
+    icon-image: "https://raw.githubusercontent.com/amahmoud-266/hudhud-icons/main/Basic/Block_icon.png";
+    icon-width: 35;
+    icon-height: 35;
+    icon-opacity: 1.0;
+
+    text: "Barrier Block";
+    text-color: #ffffff;
+    text-halo-color: #555555;
+    text-halo-radius: 2;
+    text-offset-y: 25;
+    font-size: 12;
+}
+
+/* ============================================================
+   STYLE SETTINGS  (JOSM: right-click the style > Style settings)
+   Numbers: click the item and type a new value.
+   ============================================================ */
+setting::icon_zoom {
+    type: double;
+    label: tr("🖼 Icons | Show from zoom level (14-18)");
+    default: 16;
+}
+setting::icon_size {
+    type: double;
+    label: tr("🖼 Icons | Size in pixels (e.g. 20-60)");
+    default: 30;
+}
+setting::icon_opacity {
+    type: double;
+    label: tr("🖼 Icons | Opacity (0.1 - 1.0)");
+    default: 1.0;
+}
+setting::show_labels {
+    type: boolean;
+    label: tr("🔤 Text | Show text");
+    default: true;
+}
+setting::label_zoom {
+    type: double;
+    label: tr("🔤 Text | Show from zoom level (16-19)");
+    default: 16;
+}
+setting::label_short {
+    type: boolean;
+    label: tr("🔤 Text | Short text (stop instead of highway=stop)");
+    default: false;
+}
+setting::font_size {
+    type: double;
+    label: tr("🔤 Text | Size");
+    default: 11;
+}
+setting::label_color {
+    type: color;
+    label: tr("🔤 Text | Color");
+    default: #ffffff;
+}
+
+/* ============================================================
+   SIGN ICONS
+   Icon = AI/sign_type=<value>.png on GitHub (found by name).
+   To add a sign: just upload the image to the AI folder.
+   Keep images small (64px) so JOSM loads fast.
+   ============================================================ */
+
+/* Zoom switches (from Style settings) */
+node|z14[sign_type][(setting("icon_zoom") <= 14)] { set .hz_icon; }
+node|z15[sign_type][(setting("icon_zoom") <= 15)] { set .hz_icon; }
+node|z16[sign_type][(setting("icon_zoom") <= 16)] { set .hz_icon; }
+node|z17[sign_type][(setting("icon_zoom") <= 17)] { set .hz_icon; }
+node|z18-[sign_type][(setting("icon_zoom") <= 18)] { set .hz_icon; }
+node|z16[sign_type][setting("show_labels")][(setting("label_zoom") <= 16)] { set .hz_label; }
+node|z17[sign_type][setting("show_labels")][(setting("label_zoom") <= 17)] { set .hz_label; }
+node|z18[sign_type][setting("show_labels")][(setting("label_zoom") <= 18)] { set .hz_label; }
+node|z19-[sign_type][setting("show_labels")][(setting("label_zoom") <= 19)] { set .hz_label; }
+
+node.hz_icon {
+    icon-image: eval(concat("https://raw.githubusercontent.com/amahmoud-266/hudhud-icons/main/AI/sign_type=", tag("sign_type"), ".png"));
+    icon-width: eval(setting("icon_size"));
+    icon-height: eval(setting("icon_size"));
+    icon-opacity: eval(setting("icon_opacity"));
+}
+
+node.hz_label {
+    text: eval(tag("sign_type"));
+    text-color: setting("label_color");
+    text-halo-color: black;
+    text-halo-radius: 2;
+    text-offset-y: 25;
+    font-size: eval(setting("font_size"));
+}
+node.hz_label[setting("label_short")] { text: eval(any(get(regexp_match("^.*=(.*)$", tag("sign_type")), 1), tag("sign_type"))); }
+
